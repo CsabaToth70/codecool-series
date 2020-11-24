@@ -28,6 +28,7 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
+    <link rel="icon" href="{{url_for('static', filename='assets/satelit.png')}}">
 </head>
 
 <body>
@@ -36,8 +37,8 @@
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">Codecool Series DB</span>
         <div id="header-auth">
+            <button type="button" id="db-model">db-model</button>
             <button type="button" id="bt-register">Register</button>
-            <button type="button" id="bt-login">Login</button>
         </div>
     </header>
     <section>
