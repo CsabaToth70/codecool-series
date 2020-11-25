@@ -22,7 +22,7 @@ def display_most_rated():
     page_title = 'Most rated shows'
     shows_to_display = []
     title_id_dict = {}
-    most_rated_shows = queries.get_most_rated()
+    most_rated_shows = queries.get_most_rated(1)
     column_heads = []
 
     for head in most_rated_shows[0].keys():
@@ -43,12 +43,6 @@ def display_most_rated():
     return render_template('design.html', page_title=page_title, shows_to_display=shows_to_display,
                            column_heads=column_heads, title_id_dict=title_id_dict, selection=False, delete=False,
                            is_one_show=False, detailed_view={}, edit_data={})
-
-
-# @app.route('/')
-# def ():
-#     pass
-
 
 
 def main():

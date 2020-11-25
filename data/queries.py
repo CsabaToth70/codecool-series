@@ -6,7 +6,7 @@ def get_shows():
 
 # Title, Year, Runtime (min), Rating, Genres, Trailer, Homepage
 
-def get_most_rated():
+def get_most_rated(starting_row: int):
     query = '''SELECT s.id AS "id",
        title AS "Title",
        year AS "Year",
@@ -22,6 +22,6 @@ def get_most_rated():
         ON sg.genre_id = g.id
     GROUP BY s.id, s.title, s.year, s.runtime, s.rating, s.trailer, s.homepage
     ORDER BY Rating DESC
-    LIMIT 15;'''
-    return data_manager.execute_select(query)
+    LIMIT 15 OFFSET %(s_w)s;'''
+    return data_manager.execute_select(query, variables={'s_w': starting_row})
 
