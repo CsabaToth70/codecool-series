@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title>CsED</title>
+    <title>Shows</title>
 
     <!-- Import Montserrat font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -29,6 +29,7 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
+    <link rel="icon" href="{{url_for('static', filename='assets/satelit.png')}}">
 </head>
 
 <body>
@@ -51,7 +52,7 @@
             <span class="separator">&gt;</span>
             <a href="#">Episode 8</a>
         </nav>
-        <h1 class="title text-center">Welcome page</h1>
+        <h1 class="title text-center">{{ page_title }}</h1>
         <div class="card">
             <h2>Welcome TV show lovers!</h2>
             <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
@@ -63,68 +64,79 @@
             </p>
         </div>
         <div class="card">
-            This is an example for a table:
+            Result:
             <table>
                 <thead>
                 <tr>
-                    <th>a</th>
-                    <th>b</th>
-                    <th>c</th>
-                    <th>d</th>
-                    <th class="action-column">e</th>
+                    {% for headline in column_heads %}
+                        <th>{{ headline }}</th>
+                    {% endfor %}
+                    <th class="action-column">selection</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Lorem</td>
-                    <td>Ipsum</td>
-                    <td>Dolor</td>
-                    <td>Sit amet</td>
-                    <td class="action-column">
-                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>
-                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem</td>
-                    <td>Ipsum</td>
-                    <td>Dolor</td>
-                    <td>Sit amet</td>
-                    <td class="action-column">
-                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>
-                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem</td>
-                    <td>Ipsum</td>
-                    <td>Dolor</td>
-                    <td>Sit amet</td>
-                    <td class="action-column">
-                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>
-                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem</td>
-                    <td>Ipsum</td>
-                    <td>Dolor</td>
-                    <td>Sit amet</td>
-                    <td class="action-column">
-                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>
-                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem</td>
-                    <td>Ipsum</td>
-                    <td>Dolor</td>
-                    <td>Sit amet</td>
-                    <td class="action-column">
-                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>
-                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>
-                    </td>
-                </tr>
+                {% for row in shows_to_display %}
+                    <tr>
+                        {% for key in column_heads %}
+                            <td>{{ row[key] }}</td>
+                        {% endfor %}
+                        <td class="action-column">
+                            <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>
+                            <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>
+                        </td>
+                    </tr>
+                {% endfor %}
+{##}
+{#                <tr>#}
+{#                    <td>Lorem</td>#}
+{#                    <td>Ipsum</td>#}
+{#                    <td>Dolor</td>#}
+{#                    <td>Sit amet</td>#}
+{#                    <td class="action-column">#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>#}
+{#                    </td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td>Lorem</td>#}
+{#                    <td>Ipsum</td>#}
+{#                    <td>Dolor</td>#}
+{#                    <td>Sit amet</td>#}
+{#                    <td class="action-column">#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>#}
+{#                    </td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td>Lorem</td>#}
+{#                    <td>Ipsum</td>#}
+{#                    <td>Dolor</td>#}
+{#                    <td>Sit amet</td>#}
+{#                    <td class="action-column">#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>#}
+{#                    </td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td>Lorem</td>#}
+{#                    <td>Ipsum</td>#}
+{#                    <td>Dolor</td>#}
+{#                    <td>Sit amet</td>#}
+{#                    <td class="action-column">#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>#}
+{#                    </td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td>Lorem</td>#}
+{#                    <td>Ipsum</td>#}
+{#                    <td>Dolor</td>#}
+{#                    <td>Sit amet</td>#}
+{#                    <td class="action-column">#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>#}
+{#                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>#}
+{#                    </td>#}
+{#                </tr>#}
                 </tbody>
             </table>
         </div>

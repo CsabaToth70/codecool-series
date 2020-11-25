@@ -17,6 +17,30 @@ def design():
     return render_template('design.html')
 
 
+@app.route('/shows/most-rated')
+def display_most_rated():
+    page_title = 'Most rated shows'
+    shows_to_display = []
+    title_id_dict = {}
+    most_rated_shows = queries.get_most_rated()
+    column_heads = []
+    for head in most_rated_shows[0].keys():
+        if head != 'id':
+            column_heads.append(head)
+    for row in most_rated_shows:
+        data_dict = {}
+        for headline in column_heads:
+            data_dict[headline] = row[headline]
+        shows_to_display.append(data_dict)
+    for row in most_rated_shows:
+        title_id_dict[row['title']] = row['id']
+    # print(f'shows_to_display[0]: {shows_to_display[0]}')
+    # print(f'title_id_dict: {title_id_dict}')
+    # print(f'column_heads: {column_heads}')
+    return render_template('design.html', page_title=page_title, shows_to_display=shows_to_display,
+                           column_heads=column_heads, title_id_dict=title_id_dict)
+
+
 def main():
     app.run(debug=False)
 
