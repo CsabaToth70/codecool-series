@@ -24,14 +24,20 @@ def display_most_rated():
     title_id_dict = {}
     most_rated_shows = queries.get_most_rated()
     column_heads = []
+
     for head in most_rated_shows[0].keys():
         if head != 'id':
             column_heads.append(head)
+
     for row in most_rated_shows:
         data_dict = {}
         for headline in column_heads:
-            data_dict[headline] = row[headline]
+            if row[headline] is not None:
+                data_dict[headline] = row[headline]
+            else:
+                data_dict[headline] = 'No URL'
         shows_to_display.append(data_dict)
+
     for row in most_rated_shows:
         title_id_dict[row['title']] = row['id']
     # print(f'shows_to_display[0]: {shows_to_display[0]}')
