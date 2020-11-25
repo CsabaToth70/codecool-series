@@ -39,18 +39,15 @@ def display_most_rated():
         shows_to_display.append(data_dict)
 
     for row in most_rated_shows:
-        title_id_dict[row['title']] = row['id']
-    # print(f'shows_to_display[0]: {shows_to_display[0]}')
-    # print(f'title_id_dict: {title_id_dict}')
-    # print(f'column_heads: {column_heads}')
+        title_id_dict[row['Title']] = row['id']
     return render_template('design.html', page_title=page_title, shows_to_display=shows_to_display,
                            column_heads=column_heads, title_id_dict=title_id_dict, selection=False, delete=False,
                            is_one_show=False, detailed_view={}, edit_data={})
 
 
-@app.route('/')
-def ():
-    pass
+# @app.route('/')
+# def ():
+#     pass
 
 
 

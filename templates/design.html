@@ -82,7 +82,7 @@
                 {% for row in shows_to_display %}
                     <tr>
                         {% for key in column_heads %}
-                            {% if key=='title' %}
+                            {% if key=='Title' %}
                                 <td><a href="/show/{{ title_id_dict[ row[key] ] }}">{{ row[key] }}</a></td>
                             {% else %}
                                 <td>{{ row[key] }}</td>
