@@ -84,6 +84,10 @@
                         {% for key in column_heads %}
                             {% if key=='Title' %}
                                 <td><a href="/show/{{ title_id_dict[ row[key] ] }}">{{ row[key] }}</a></td>
+                            {% elif key == 'Trailer' and row[key] != 'No URL' %}
+                                <td><a href="{{ row[key] }}">{{ row[key] }}</a></td>
+                            {% elif key == 'Homepage' and row[key] != 'No URL' %}
+                                <td><a href="{{ row[key] }}">{{ row[key] }}</a></td>
                             {% else %}
                                 <td>{{ row[key] }}</td>
                             {% endif %}
