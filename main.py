@@ -24,9 +24,10 @@ def display_most_rated():
     page_title = 'Most rated shows'
     shows_to_display = []
     title_id_dict = {}
-    length_of_list = 8
+    length_of_list = 5
     starting_row_number = get_starting_row_number(page_number)
-    most_rated_shows = queries.get_most_rated(starting_row_number)
+    ordered_by = "Year"
+    most_rated_shows = queries.get_ordered_shows(str(starting_row_number), ordered_by, True)
     page_number_list, all_page_number = get_page_number_list(page_number, length_of_list)
 
     column_heads = []
