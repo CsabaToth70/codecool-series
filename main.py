@@ -21,23 +21,38 @@ def design():
 @app.route('/shows/most-rated/')
 def display_most_rated():
     page_number = int(request.args.get('page', 1))
+    ordered_by = request.args.get('aspect', "Rating")
+    requested_ordered_by = ordered_by
+    ordered_by = "Runtime (min)" if ordered_by == "Runtime" else ordered_by
+    adjusted_ordered_by = ordered_by
+    direction_string = request.args.get('direction')
+    direction = False if direction_string == "false" else True
     page_title = 'Most rated shows'
     shows_to_display = []
     title_id_dict = {}
-    length_of_list = 5
+    length_of_page_list = 5
     starting_row_number = get_starting_row_number(page_number)
-    ordered_by = "Year"
-    most_rated_shows = queries.get_ordered_shows(str(starting_row_number), ordered_by, True)
-    page_number_list, all_page_number = get_page_number_list(page_number, length_of_list)
+    most_rated_shows = queries.get_ordered_shows(str(starting_row_number), ordered_by, direction)
+    page_number_list, all_page_number = get_page_number_list(page_number, length_of_page_list)
 
     column_heads = []
+    query_heads = []
     for head in most_rated_shows[0].keys():
         if head != 'id':
-            column_heads.append(head)
+            query_heads.append(head)
+            if head == adjusted_ordered_by:
+                if direction:
+                    adjusted_head = head + " ⇧"
+                    column_heads.append(adjusted_head)
+                else:
+                    adjusted_head = head + " ⇩"
+                    column_heads.append(adjusted_head)
+            else:
+                column_heads.append(head)
 
     for row in most_rated_shows:
         data_dict = {}
-        for headline in column_heads:
+        for headline in query_heads:
             if row[headline] is not None:
                 data_dict[headline] = row[headline]
             else:
@@ -46,34 +61,37 @@ def display_most_rated():
 
     for row in most_rated_shows:
         title_id_dict[row['Title']] = row['id']
-    return render_template('design.html', page_title=page_title, shows_to_display=shows_to_display,
-                           column_heads=column_heads, title_id_dict=title_id_dict, selection=False, delete=False,
-                           is_one_show=False, detailed_view={}, edit_data={}, page_number_list=page_number_list,
-                           page_number=page_number, all_page_number=all_page_number)
+
+    return render_template('design.html', selection=False, delete=False, is_one_show=False, page_title=page_title,
+                           shows_to_display=shows_to_display, column_heads=column_heads, title_id_dict=title_id_dict,
+                           detailed_view={}, edit_data={}, page_number_list=page_number_list, page_number=page_number,
+                           all_page_number=all_page_number, aspect=requested_ordered_by, direction=direction_string)
 
 
 def get_starting_row_number(page_number):
     return (page_number * 15) - 14
 
 
-def get_page_number_list(page_number, length_of_list: int):
+def get_page_number_list(page_number, length_of_page_list: int):
     rows_number = 15
     pagination_list = []
-    page_number_list = [[i + 1, 0] for i in range(length_of_list)]
+    page_number_list = [[i + 1, 0] for i in range(length_of_page_list)]
     all_row_number = get_all_row_number()
     all_page_number = get_all_page_number(all_row_number, rows_number)
-    if page_number > all_page_number - length_of_list:
-        for i in range((all_page_number - length_of_list) + 1, all_page_number + 1):
+    if page_number > all_page_number - length_of_page_list:
+        for i in range((all_page_number - length_of_page_list) + 1, all_page_number + 1):
             pagination_list.append(i)
-    elif page_number <= length_of_list:
-        for i in range(length_of_list):
+    elif page_number <= length_of_page_list:
+        for i in range(length_of_page_list):
             pagination_list.append(i + 1)
     else:
-        if length_of_list % 2 == 0:
-            for i in range(page_number - int((length_of_list / 2)), 1 + page_number + int(((length_of_list / 2) - 1))):
+        if length_of_page_list % 2 == 0:
+            for i in range(page_number - int((length_of_page_list / 2)),
+                           1 + page_number + int(((length_of_page_list / 2) - 1))):
                 pagination_list.append(i)
         else:
-            for i in range(page_number - int((length_of_list / 2)), 1 + page_number + int((length_of_list / 2))):
+            for i in range(page_number - int((length_of_page_list / 2)),
+                           1 + page_number + int((length_of_page_list / 2))):
                 pagination_list.append(i)
     for n, p in enumerate(pagination_list):
         page_number_list[n][1] = p

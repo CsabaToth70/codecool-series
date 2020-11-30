@@ -70,21 +70,38 @@
             Result:
             <table>
                 <thead>
-                <tr>
+                <tr class="headline" data-aspect = {{ aspect }} data-direction={{ direction }}>
                     {% for headline in column_heads %}
-                        <th>{{ headline }}</th>
+                        {% if headline == 'Title' or headline == 'Title ⇩' or headline == 'Title ⇧' %}
+                            <th class='Title'><a href="/shows/most-rated" data-short-name='Title'>{{ headline }}</a></th>
+                        {% elif headline == 'Year' or headline == 'Year ⇩' or headline == 'Year ⇧' %}
+                            <th class='Year'><a href="/shows/most-rated" data-short-name='Year'>{{ headline }}</a></th>
+                        {% elif headline == 'Runtime (min)' or headline == 'Runtime (min) ⇩' or headline == 'Runtime (min) ⇧' %}
+                            <th class='Runtime'><a href="/shows/most-rated" data-short-name='Runtime'>{{ headline }}</a></th>
+                        {% elif headline == 'Rating' or headline == 'Rating ⇩' or headline == 'Rating ⇧' %}
+                            <th class='Rating'><a href="/shows/most-rated" data-short-name='Rating'>{{ headline }}</a></th>
+                        {% else %}
+                            <th class={{ headline }} data-short-name={{ headline }} >{{ headline }}</th>
+                        {% endif %}
                     {% endfor %}
                     {% if selection or delete %}
                         <th class="action-column">selection</th>
                     {% endif %}
                 </tr>
                 </thead>
+
                 <tbody>
                 {% for row in shows_to_display %}
                     <tr>
                         {% for key in column_heads %}
-                            {% if key=='Title' %}
-                                <td><a href="/show/{{ title_id_dict[ row[key] ] }}">{{ row[key] }}</a></td>
+                            {% if key=='Title' or key=='Title ⇩' or key=='Title ⇧' %}
+                                <td><a href="/show/{{ title_id_dict[ row['Title'] ] }}">{{ row['Title'] }}</a></td>
+                            {% elif key=='Year' or key=='Year ⇩' or key=='Year ⇧' %}
+                                <td>{{ row['Year'] }}</td>
+                            {% elif key=='Runtime (min)' or key=='Runtime (min) ⇩' or key=='Runtime (min) ⇧' %}
+                                <td>{{ row['Runtime (min)'] }}</td>
+                            {% elif key=='Rating' or key=='Rating ⇩' or key=='Rating ⇧' %}
+                                <td>{{ row['Rating'] }}</td>
                             {% elif key == 'Trailer' and row[key] != 'No URL' %}
                                 <td><a href="{{ row[key] }}">{{ row[key] }}</a></td>
                             {% elif key == 'Homepage' and row[key] != 'No URL' %}
