@@ -11,6 +11,7 @@ function placeListeners() {
     for (let headline of headlines) {
         headline.addEventListener('click', getNewOrder);
     }
+
 }
 
 function getDirection(directionText) {

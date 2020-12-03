@@ -68,6 +68,27 @@ def display_most_rated():
                            all_page_number=all_page_number, aspect=requested_ordered_by, direction=direction_string)
 
 
+@app.route('/show/')
+def get_detailed_show():
+    show_id = request.args.get('show-id')
+    detailed_show = queries.get_one_show_data(show_id)
+    detailDict = {}
+    detailTypes = []
+    for whatDetail in detailed_show[0].keys():
+        detailTypes.append(whatDetail)
+    for detail in detailTypes:
+        if detail == 'Runtime':
+            minutes = int(detailed_show[0][detail])
+            hours = str(int(minutes / 60)) + 'h ' if minutes >= 60 else ''
+            rest_minutes = str(int(minutes % 60)) + 'min' if (minutes % 60) > 0 else ''
+            detailDict[detail] = hours + rest_minutes
+        elif detail == 'Year':
+            detailDict[detail] = str(detailed_show[0][detail])[:4]
+        else:
+            detailDict[detail] = detailed_show[0][detail]
+    return render_template('design.html', is_one_show=True, detailed_view=True, detailDict=detailDict)
+
+
 def get_starting_row_number(page_number):
     return (page_number * 15) - 14
 
