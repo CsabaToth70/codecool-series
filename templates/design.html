@@ -47,50 +47,54 @@
     </header>
     <section>
         {% if is_one_show %}
-{#            <nav class="breadcrumb">#}
-{#                <a href="#">Game of Thrones</a>#}
-{#                <span class="separator">&gt;</span>#}
-{#                <a href="#">Season 3</a>#}
-{#                <span class="separator">&gt;</span>#}
-{#                <a href="#">Episode 8</a>#}
-{#                <span class="separator">&gt;</span>#}
-{#                <a href="https://www.google.com/search?q=lord+of+rings&source=lnms&tbm=isch&sa=X&biw=1366&bih=639">Link to searching</a>#}
-{#            </nav>#}
+            {#            <nav class="breadcrumb">#}
+            {#                <a href="#">Game of Thrones</a>#}
+            {#                <span class="separator">&gt;</span>#}
+            {#                <a href="#">Season 3</a>#}
+            {#                <span class="separator">&gt;</span>#}
+            {#                <a href="#">Episode 8</a>#}
+            {#                <span class="separator">&gt;</span>#}
+            {#                <a href="https://www.google.com/search?q=lord+of+rings&source=lnms&tbm=isch&sa=X&biw=1366&bih=639">Link to searching</a>#}
+            {#            </nav>#}
             {% if detailDict['Trailer'] is not none %}
-                <iframe width="450" height="270" src="https://www.youtube.com/embed/{{ detailDict['Trailer'].split('=')[1] }}"></iframe>
+                <iframe width="450" height="270"
+                        src="https://www.youtube.com/embed/{{ detailDict['Trailer'].split('=')[1] }}"></iframe>
             {% endif %}
         {% endif %}
-    {% if not is_one_show %}
-        <h1 class="title text-center">{{ page_title }}</h1>
+        {% if not is_one_show %}
+            <h1 class="title text-center">{{ page_title }}</h1>
 
-        <div class="card">
-            <h2>Welcome TV show lovers!</h2>
+            <div class="card">
+                <h2>Welcome TV show lovers!</h2>
 
-            {#            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>#}
-            {#            <p></p>#}
-            {#            <p>Okay, actually this is a designed dumb page without any logic.</p>#}
-            {#            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for#}
-            {#                in-depth#}
-            {#                navigation.#}
-            {#            </p>#}
-        </div>
-    {% endif %}
-{#    All shows in shorted pages starts here#}
-    {% if not is_one_show %}
-        <div class="card">
+                {#            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>#}
+                {#            <p></p>#}
+                {#            <p>Okay, actually this is a designed dumb page without any logic.</p>#}
+                {#            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for#}
+                {#                in-depth#}
+                {#                navigation.#}
+                {#            </p>#}
+            </div>
+        {% endif %}
+        {#    All shows in shorted pages starts here#}
+        {% if not is_one_show %}
+            <div class="card">
             Result:
             <table>
                 <thead>
-                <tr class="headline" data-aspect = {{ aspect }} data-direction={{ direction }}>
+                <tr class="headline" data-aspect={{ aspect }} data-direction={{ direction }}>
                     {% for headline in column_heads %}
                         {% if headline == 'Title' or headline == 'Title ⇩' or headline == 'Title ⇧' %}
-                            <th class='Title'><a href="/shows/most-rated" data-short-name='Title'>{{ headline }}</a></th>
+                            <th class='Title'><a href="/shows/most-rated" data-short-name='Title'>{{ headline }}</a>
+                            </th>
                         {% elif headline == 'Year' or headline == 'Year ⇩' or headline == 'Year ⇧' %}
                             <th class='Year'><a href="/shows/most-rated" data-short-name='Year'>{{ headline }}</a></th>
                         {% elif headline == 'Runtime (min)' or headline == 'Runtime (min) ⇩' or headline == 'Runtime (min) ⇧' %}
-                            <th class='Runtime'><a href="/shows/most-rated" data-short-name='Runtime'>{{ headline }}</a></th>
+                            <th class='Runtime'><a href="/shows/most-rated" data-short-name='Runtime'>{{ headline }}</a>
+                            </th>
                         {% elif headline == 'Rating' or headline == 'Rating ⇩' or headline == 'Rating ⇧' %}
-                            <th class='Rating'><a href="/shows/most-rated" data-short-name='Rating'>{{ headline }}</a></th>
+                            <th class='Rating'><a href="/shows/most-rated" data-short-name='Rating'>{{ headline }}</a>
+                            </th>
                         {% else %}
                             <th class={{ headline }} data-short-name={{ headline }} >{{ headline }}</th>
                         {% endif %}
@@ -106,7 +110,8 @@
                     <tr>
                         {% for key in column_heads %}
                             {% if key=='Title' or key=='Title ⇩' or key=='Title ⇧' %}
-                                <td><a href="/show/?show-id={{ title_id_dict[ row['Title'] ] }}">{{ row['Title'] }}</a></td>
+                                <td><a href="/show/?show-id={{ title_id_dict[ row['Title'] ] }}">{{ row['Title'] }}</a>
+                                </td>
                             {% elif key=='Year' or key=='Year ⇩' or key=='Year ⇧' %}
                                 <td>{{ row['Year'] }}</td>
                             {% elif key=='Runtime (min)' or key=='Runtime (min) ⇩' or key=='Runtime (min) ⇧' %}
@@ -136,95 +141,113 @@
 
                 </tbody>
             </table>
-{#  All shows in shorted pages ends here#}
+            {#  All shows in shorted pages ends here#}
 
-{#  Pagination  starts here #}
-        <div class="card">
-            <div class="pagination" data-all-page={{ all_page_number }}>
-                <a id="back" href="/shows/most-rated">«</a>
-                {% for i, page in page_number_list %}
-                    {% if page_number == page %}
-                        <a class="active" id="{{ i }}" href="/shows/most-rated">{{ page }}</a>
-                    {% else %}
-                        <a id="{{ i }}" href="/shows/most-rated">{{ page }}</a>
-                    {% endif %}
-                {% endfor %}
-                <a id="up" href="/shows/most-rated">»</a>
+            {#  Pagination  starts here #}
+            <div class="card">
+                <div class="pagination" data-all-page={{ all_page_number }}>
+                    <a id="back" href="/shows/most-rated">«</a>
+                    {% for i, page in page_number_list %}
+                        {% if page_number == page %}
+                            <a class="active" id="{{ i }}" href="/shows/most-rated">{{ page }}</a>
+                        {% else %}
+                            <a id="{{ i }}" href="/shows/most-rated">{{ page }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    <a id="up" href="/shows/most-rated">»</a>
 
+                </div>
             </div>
-        </div>
-{#  Pagination ends here #}
-    {% endif %}
-            {% if detailed_view %}
-{#    Detailed view of one selected show starts here #}
-                <div class="card detailed-view">
-{#                    <p>And here is a "detailed" kind of view:</p>#}
-{#                    <div class="row">#}
-{#                        <img src="http://www.impawards.com/2016/posters/deadpool_ver5.jpg" alt="Deadpool poster"#}
-{#                             class="poster col col-third">#}
-{#                        <div class="col col-twothird">#}
-                            <h2>{{ detailDict['Title'] }}</h2>
-                            <p class="small grayed">{{ detailDict['Runtime'] }} <span class="separator">|</span> {{ detailDict['Genres'] }}
-                                <span
-                                        class="separator">|</span> {{ detailDict['Year'] }}</p>
-                                <p><a href={{ detailDict['Homepage'] }}>Homepage: {{ detailDict['Homepage'] }}</a></p>
-                                <p>Rating: {{ detailDict['Rating'] }}</p>
-{#                            <p>A fast-talking mercenary with a morbid sense of humor is subjected to a rogue experiment#}
-{#                                that#}
-{#                                leaves#}
-{#                                him with accelerated healing powers and a quest for revenge.</p>#}
-                        </div>
-                    </div>
-                    <div>
-                        <p><b>Stars:</b>&nbsp;{{ detailDict['Actors'] }}</p>
-{#                        <p><b>Director:</b>&nbsp;<a href="#">Tim Miller</a></p>#}
-{#                        <p><b>Writers:</b>&nbsp;<a href="#">Rhett Reese</a>, <a href="#">Paul Wernick</a></p>#}
-{#                        <p><b>Stars:</b>&nbsp;<a href="#">Ryan Reynolds</a>, <a href="#">Morena Baccarin</a>, <a#}
-{#                                href="#">T.J.#}
-{#                            Miller</a></p>#}
+            {#  Pagination ends here #}
+        {% endif %}
+        {% if detailed_view %}
+            {#    Detailed view of one selected show starts here #}
+            <div class="card detailed-view">
+{#                <p>And here is a "detailed" kind of view:</p>#}
+                <div class="row">
+{#                    <img src="http://www.impawards.com/{{ detailDict["Year"] }}posters/{{ detailDict["Title"] }}.jpg" alt="poster"#}
+{#                         class="poster col col-third">#}
+                    <div class="col col-twothird">
+                        <h1>{{ detailDict['Title'] }}</h1>
+                        <p class="small grayed">{{ detailDict['Runtime'] }} <span
+                                class="separator">|</span> {{ detailDict['Genres'] }}
+                            <span
+                                    class="separator">|</span> {{ detailDict['Year'] }}</p>
+                        <p><a href={{ detailDict['Homepage'] }}>Homepage: {{ detailDict['Homepage'] }}</a></p>
+                        <p>Rating: {{ detailDict['Rating'] }}</p>
+                        {#                            <p>A fast-talking mercenary with a morbid sense of humor is subjected to a rogue experiment#}
+                        {#                                that#}
+                        {#                                leaves#}
+                        {#                                him with accelerated healing powers and a quest for revenge.</p>#}
                     </div>
                 </div>
-{#    Detailed view of one selected show starts here #}
-            {% endif %}
+                <div>
+                    <p><b>Stars:</b>&nbsp;{{ detailDict['Actors'] }}</p>
+                    {#                        <p><b>Director:</b>&nbsp;<a href="#">Tim Miller</a></p>#}
+                    {#                        <p><b>Writers:</b>&nbsp;<a href="#">Rhett Reese</a>, <a href="#">Paul Wernick</a></p>#}
+                    {#                        <p><b>Stars:</b>&nbsp;<a href="#">Ryan Reynolds</a>, <a href="#">Morena Baccarin</a>, <a#}
+                    {#                                href="#">T.J.#}
+                    {#                            Miller</a></p>#}
+                </div>
+            </div>
+            <div class="card" >
+            <table>
+                <h2>Seasons</h2>
+                <tr>
+                    <th id="season_number"></th>
+                    <th id="season_title"> {{ season_headers[1] }} </th>
+                    <th> {{ season_headers[2] }} </th>
+                </tr>
+                {% for row in season_data %}
+                    <tr>
+                        {% for element in season_headers %}
+                            <td>{{ row[element] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+            </div>
+            {#    Detailed view of one selected show starts here #}
+        {% endif %}
 
-            {% if edit_data %}
-                <div class="card">
-                    <p>A form example to edit a TV show's episode:</p>
-                    <form action="#" method="post">
-                        <p class="form-element">
-                            <label class="form-element-label" for="form-example-show">Show:</label>
-                            <select name="show" id="form-example-show">
-                                <option value="">Game of Thrones (2011)</option>
-                                <option value="">Lost (2004)</option>
-                                <option value="">South Park (1997)</option>
-                                <option value="">How I met your mother (2005)</option>
-                                <option value="">Legion (2017)</option>
-                            </select>
-                        </p>
-                        <p class="form-element">
-                            <label class="form-element-label" for="form-example-season">Season:</label>
-                            <input type="number" name="season" id="form-example-season" value="" min="1" max="30">
-                        </p>
-                        <p class="form-element">
-                            <label class="form-element-label" for="form-example-episode">Episode:</label>
-                            <input type="number" name="episode" id="form-example-episode" value="" min="1" max="100">
-                        </p>
-                        <p class="form-element">
-                            <label class="form-element-label" for="form-example-title">Title:</label>
-                            <input type="text" name="name" id="form-example-title" value=""
-                                   placeholder="What the pencake?">
-                        </p>
-                        <p class="form-element">
-                            <label class="form-element-label" for="form-example-length">Length:</label>
-                            <input type="number" name="length" id="form-example-length" value="" min="1" max="999">
-                            <span>min.</span>
-                        </p>
-                        <p class="text-center">
-                            <button type="submit">Submit</button>
-                        </p>
-                    </form>
-                </div>
-            {% endif %}
+        {% if edit_data %}
+            <div class="card">
+                <p>A form example to edit a TV show's episode:</p>
+                <form action="#" method="post">
+                    <p class="form-element">
+                        <label class="form-element-label" for="form-example-show">Show:</label>
+                        <select name="show" id="form-example-show">
+                            <option value="">Game of Thrones (2011)</option>
+                            <option value="">Lost (2004)</option>
+                            <option value="">South Park (1997)</option>
+                            <option value="">How I met your mother (2005)</option>
+                            <option value="">Legion (2017)</option>
+                        </select>
+                    </p>
+                    <p class="form-element">
+                        <label class="form-element-label" for="form-example-season">Season:</label>
+                        <input type="number" name="season" id="form-example-season" value="" min="1" max="30">
+                    </p>
+                    <p class="form-element">
+                        <label class="form-element-label" for="form-example-episode">Episode:</label>
+                        <input type="number" name="episode" id="form-example-episode" value="" min="1" max="100">
+                    </p>
+                    <p class="form-element">
+                        <label class="form-element-label" for="form-example-title">Title:</label>
+                        <input type="text" name="name" id="form-example-title" value=""
+                               placeholder="What the pencake?">
+                    </p>
+                    <p class="form-element">
+                        <label class="form-element-label" for="form-example-length">Length:</label>
+                        <input type="number" name="length" id="form-example-length" value="" min="1" max="999">
+                        <span>min.</span>
+                    </p>
+                    <p class="text-center">
+                        <button type="submit">Submit</button>
+                    </p>
+                </form>
+            </div>
+        {% endif %}
 
     </section>
     <footer>

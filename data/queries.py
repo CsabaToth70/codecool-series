@@ -3,6 +3,7 @@ from psycopg2.extras import RealDictCursor
 from psycopg2 import sql
 import datetime
 
+
 def get_shows():
     return data_manager.execute_select('SELECT id, title FROM shows;')
 
@@ -88,3 +89,13 @@ def get_one_show_data(show_id):
     GROUP BY s.id, s.title, s.year, s.runtime, s.rating, s.trailer, s.homepage;'''
     return data_manager.execute_select(query, variables={'s_d': show_id})
 
+
+def get_season_data(show_id):
+    query = '''SELECT show_id,
+       season_number AS "Season",
+       title AS "Title",
+       overview AS "Overview"
+FROM seasons 
+WHERE show_id = %(s_d)s AND season_number != 0
+ORDER BY season_number;'''
+    return data_manager.execute_select(query, variables={'s_d': show_id})

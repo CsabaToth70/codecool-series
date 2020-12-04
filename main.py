@@ -72,7 +72,7 @@ def display_most_rated():
 def get_detailed_show():
     show_id = request.args.get('show-id')
     detailed_show = queries.get_one_show_data(show_id)
-    detailDict = {}
+    detail_dict = {}
     detailTypes = []
     for whatDetail in detailed_show[0].keys():
         detailTypes.append(whatDetail)
@@ -81,12 +81,15 @@ def get_detailed_show():
             minutes = int(detailed_show[0][detail])
             hours = str(int(minutes / 60)) + 'h ' if minutes >= 60 else ''
             rest_minutes = str(int(minutes % 60)) + 'min' if (minutes % 60) > 0 else ''
-            detailDict[detail] = hours + rest_minutes
+            detail_dict[detail] = hours + rest_minutes
         elif detail == 'Year':
-            detailDict[detail] = str(detailed_show[0][detail])[:4]
+            detail_dict[detail] = str(detailed_show[0][detail])[:4]
         else:
-            detailDict[detail] = detailed_show[0][detail]
-    return render_template('design.html', is_one_show=True, detailed_view=True, detailDict=detailDict)
+            detail_dict[detail] = detailed_show[0][detail]
+    season_headers = ["Season", "Title", "Overview"]
+    season_data = queries.get_season_data(show_id)
+    return render_template('design.html', is_one_show=True, detailed_view=True, detailDict=detail_dict,
+                           season_headers=season_headers, season_data=season_data)
 
 
 def get_starting_row_number(page_number):
