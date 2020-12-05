@@ -29,7 +29,7 @@ def get_number_of_all():
 
 def get_ordered_shows(starting_row, ordered_by='Rating', order_direction=True):
     if order_direction:
-        query = '''SELECT s.id AS "id",
+        query = '''SELECT DISTINCT s.id AS "id",
            title AS "Title",
            year AS "Year",
            runtime AS "Runtime (min)",
@@ -46,7 +46,7 @@ def get_ordered_shows(starting_row, ordered_by='Rating', order_direction=True):
         ORDER BY {asp} DESC
         LIMIT 15 OFFSET %(s_w)s;'''
     else:
-        query = '''SELECT s.id AS "id",
+        query = '''SELECT DISTINCT s.id AS "id",
            title AS "Title",
            year AS "Year",
            runtime AS "Runtime (min)",
