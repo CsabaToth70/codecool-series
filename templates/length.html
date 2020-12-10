@@ -28,6 +28,9 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
+    <script src="https://kit.fontawesome.com/57ea2e1c29.js" crossorigin="anonymous"></script>
+    <script type="module" src="{{ url_for('static', filename='js/dom.js') }}" defer></script>
+
 </head>
 
 <body>
@@ -36,31 +39,45 @@
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">Codecool Series DB</span>
         <div id="header-auth">
-            <button type="button" id="bt-report-length"><a href="/length">Length report</a></button>
             <button type="button" id="bt-register">Register</button>
             <button type="button" id="bt-login">Login</button>
         </div>
     </header>
     <section>
-        <h1 class="title text-center">Welcome page</h1>
+        <h1 class="title text-center">Length of shows report</h1>
+{#        <div class="card">#}
+{#            <h2>Welcome TV show lovers!</h2>#}
+{#            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>#}
+{#            <p></p>#}
+{#            <p>Okay, actually this is a designed dumb page without any logic.</p>#}
+{#            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for#}
+{#                in-depth#}
+{#                navigation.#}
+{#            </p>#}
+{#        </div>#}
         <div class="card">
-            <h2>Welcome TV show lovers!</h2>
-            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
-            <p></p>
-            <p>Okay, actually this is a designed dumb page without any logic.</p>
-            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for
-                in-depth
-                navigation.
-            </p>
-        </div>
-        <div class="card">
-            <ul>
-                {% for show in shows %}
-                    <li>
-                        <a href="{{ '/tv-show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{ table_heads[0] }}</th>
+                        <th>{{ table_heads[1] }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in shows_episode_data %}
+                        <tr class="row">
+                            <td>
+                                {% if row['is_long'] == true %}
+                                    <i class="fa fa-expand" aria-hidden="true">{{ row[table_heads[0]] }}</i>
+                                {% else %}
+                                    <i class="fa fa-compress" aria-hidden="true">{{ row[table_heads[0]] }}</i>
+                                {% endif %}
+                            </td>
+                            <td class="episodes">{{ row[table_heads[1]] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </section>
     <footer>

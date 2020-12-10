@@ -41,6 +41,7 @@ header input[type="button"] {
     text-shadow: 0 0 4px rgba(255, 255, 255, .2), 0 0 6px rgba(255, 255, 255, .1);
 }
 
+
 header button:hover,
 header button:active,
 header input[type="submit"]:hover,
@@ -52,4 +53,8 @@ header input[type="button"]:active {
     border: #fff solid 2px;
     background: rgba(150, 150, 150, .25);
     text-shadow: 0 0 4px rgba(255, 255, 255, .5), 0 0 6px rgba(255, 255, 255, .3);
+}
+
+header button a {
+    color: white;
 }
