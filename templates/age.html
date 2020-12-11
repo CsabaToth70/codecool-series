@@ -28,6 +28,7 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
+    <script src="{{ url_for('static', filename='js/age.js') }}" defer></script>
 </head>
 
 <body>
@@ -36,31 +37,34 @@
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">Codecool Series DB</span>
         <div id="header-auth">
-            <a href="/input-age">Actor's age report</a>
             <button type="button" id="bt-register">Register</button>
             <button type="button" id="bt-login">Login</button>
         </div>
     </header>
     <section>
-        <h1 class="title text-center">Welcome page</h1>
+        <h1 class="title text-center">Age report</h1>
         <div class="card">
-            <h2>Welcome TV show lovers!</h2>
-            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
-            <p></p>
-            <p>Okay, actually this is a designed dumb page without any logic.</p>
-            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for
-                in-depth
-                navigation.
-            </p>
+            <label for="start-date">Starting date: </label>
+            <input id="start-date" type="date">
+            <label for="end-date">Starting date: </label>
+            <input id="end-date" type="date">
+            <button id="report">Report</button>
         </div>
         <div class="card">
-            <ul>
-                {% for show in shows %}
-                    <li>
-                        <a href="{{ '/tv-show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Number of characters</th>
+                        </tr>
+                    </thead>
+                    <tbody id="actor-table">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
     <footer>
@@ -73,3 +77,4 @@
 </div>
 </body>
 </html>
+>
