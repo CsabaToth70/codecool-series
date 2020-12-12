@@ -7,6 +7,7 @@ async function getAge() {
     const start_date = document.getElementById('start-field').value;
     const end_date = document.getElementById('end-field').value;
     const response = await fetch(`/age?start-date=${start_date}&end-date=${end_date}`);
+    clearDisplay()
     return await response.json();
 }
 
@@ -21,6 +22,11 @@ async function displayActors() {
             '<td>' + row['count'] + '</td>' +
             '</tr>')
     }
+}
+
+function clearDisplay(){
+    let node = document.getElementById('table-body');
+    node.parentNode.replaceChild(node.cloneNode(false), node);
 }
 
 init()
