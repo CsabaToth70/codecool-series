@@ -5,6 +5,7 @@ function init(){
 
 async function get_actors_ages(startDate, endDate) {
     const response = await fetch(`/age?start-date=${startDate}&end-date=${endDate}`);
+    clearDisplay();
     return await response.json();
 }
 
@@ -21,6 +22,12 @@ async function display_actors(event){
         '<td>' + row['count'] + '</td>' +
         '</tr>')
     }
+    init()
+}
+
+function clearDisplay(){
+    let node = document.getElementById('actor-table');
+    node.parentNode.replaceChild(node.cloneNode(false), node);
 }
 
 init()

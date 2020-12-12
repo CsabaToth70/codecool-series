@@ -5,7 +5,7 @@ def get_shows():
     return data_manager.execute_select('SELECT id, title FROM shows;')
 
 def get_age(start_date, end_date):
-    query=''' SELECT a.id,
+    query='''SELECT a.id,
     CASE WHEN a.death is not null
         THEN CONCAT('+ ', a.name)
         ELSE a.name
