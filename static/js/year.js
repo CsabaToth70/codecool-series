@@ -18,24 +18,34 @@ async function display_actors(){
     for (let row of actorData) {
         if (row['is_older_actor']){
             tableBody.insertAdjacentHTML('beforeend',
-                '<tr>' +
+                '<tr ' + 'class=\"trow\" ' +
+                'data-actor-age-released=\"' + row['age_actor_at_release'] +
+                '\" ' + 'data-show-age=\"' + row['age_of_show'] + '\"' + '>' +
                 '<td>' + row['name'] + '</td>' +
                 '<td class="older">' + row['actor_age'] + '</td>' +
                 '</tr>')
             } else {
             tableBody.insertAdjacentHTML('beforeend',
-                '<tr>' +
+                '<tr ' + 'class=\"trow\" ' +
+                'data-actor-age-released=\"' + row['age_actor_at_release'] +
+                '\" ' + 'data-show-age=\"' + row['age_of_show'] + '\"' + '>' +
                 '<td>' + row['name'] + '</td>' +
                 '<td>' + row['actor_age'] + '</td>' +
                 '</tr>')
         }
     }
-    // let olderButton = document.getElementById('older');
-    // olderButton.addEventListener('click', displayOlder);
+    let rowSigns = document.querySelectorAll('.trow');
+    for (let rowSign of rowSigns) {
+        rowSign.addEventListener('click', popUpInfo);
+    }
 }
 
-// async function displayOlder(event){
-//
-// }
+function popUpInfo(event) {
+    let actorAgeAtShow = event.currentTarget.dataset.actorAgeReleased;
+    let ageOfShow = event.currentTarget.dataset.showAge;
+    let infoToAlert = 'Actor age at show released: ' + actorAgeAtShow + ' years' + '\n' +
+        'Age of the show: ' + ageOfShow + ' years';
+    alert(infoToAlert);
+}
 
 init()
