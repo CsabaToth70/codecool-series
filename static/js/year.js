@@ -12,6 +12,8 @@ async function getYears(year) {
 async function display_actors(){
     let year = document.getElementById('year-input').value;
     let actorData = await getYears(year);
+    let titleOfPage = document.getElementById('page-title');
+    titleOfPage.textContent = "Actors of shows released in " + String(year).split('-')[0];
     let tableBody = document.getElementById('actors-data');
     for (let row of actorData) {
         if (row['is_older_actor']){

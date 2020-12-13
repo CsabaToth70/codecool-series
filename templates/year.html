@@ -37,20 +37,21 @@
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">Codecool Series DB</span>
         <div id="header-auth">
-            <button id="older">Older actors than the shows</button>
             <button type="button" id="bt-register">Register</button>
             <button type="button" id="bt-login">Login</button>
         </div>
     </header>
     <section>
-        <h1 class="title text-center">Age of Actors</h1>
+
         <div class="card">
             <div>
                 <label for="year-input">Requested year for the report</label>
-                <input id="year-input" type="date">
-                <button id="add-year">Ask report</button>
+                <input id="year-input" type="date" name="year" value="2000-01-01">
+                <button id="add-year" >Ask report</button>
+
             </div>
         </div>
+                <h1 class="title text-center" id="page-title">Searching by years</h1>
         <div class="card">
             <table>
                 <thead>
