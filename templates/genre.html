@@ -28,6 +28,7 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
+    <script src="{{ url_for('static', filename='js/genre.js') }}" defer></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">Codecool Series DB</span>
         <div id="header-auth">
-            <a href="/get_genres">Genre report</a>
+            <button type="button" id="bt-genres">Genres</button>
             <button type="button" id="bt-register">Register</button>
             <button type="button" id="bt-login">Login</button>
         </div>
@@ -44,14 +45,7 @@
     <section>
         <h1 class="title text-center">Welcome page</h1>
         <div class="card">
-            <h2>Welcome TV show lovers!</h2>
-            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
-            <p></p>
-            <p>Okay, actually this is a designed dumb page without any logic.</p>
-            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for
-                in-depth
-                navigation.
-            </p>
+
         </div>
         <div class="card">
             <ul>
