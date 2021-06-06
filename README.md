@@ -13,7 +13,7 @@ Back end: server: Python, Flask server, postgres-based database
 (For further information see the reqiurements.txt file content)
 <br>
 
-## Technical information for building up database of tproject 
+## Technical information for building up database of the project 
 
 The runabble version can be found on the development brach of the repository.
 
