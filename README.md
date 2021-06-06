@@ -1,5 +1,57 @@
 # Codecool series
 
+## About the project
+
+My objective was to build up a dynamic website about movies and TV series. The task was to find and rank films by some preselected parameters, to serve background information of them, and ensure watch trailers from the page directly.
+<br>
+
+## Applied technologies
+
+Front end: HTML, CSS, Javascript, IFrame Player API
+Back end: server: Python, Flask server, postgres-based database
+
+(For further information see the reqiurements.txt file content)
+<br>
+
+## Technical information for building up database of tproject 
+
+The runabble version can be found on the development brach of the repository.
+
+1. After cloning the project to the local machine, the next step is the creation of an SQL database within the local repository:
+sudo -u <user_name> createdb <name_of_database>
+and then stepping into the psql: psql
+
+2. Initiating connection to the created database: \connect <name_of_database>
+
+The runningorder of the SQL files should be as below:
+3. From data/db_schema/ folder 01_create_schema.sql -> psql -q <name_of_database> < 01_create_schema.sql
+
+4. From dump_1000_shows: 
+    Run all of them in the below order, with command: psql -q <name_of_database> < <name_of_sql_file>
+
+    codecool_public_genres.sql
+    codecool_public_shows.sql 
+    codecool_public_actors.sql
+    codecool_public_show_genres.sql
+    codecool_public_seasons.sql
+    codecool_public_episodes.sql(95000 lines! It can take 15-20 minutes)
+    codecool_public_show_characters
+<br>
+
+## User information about main functionalities of the codecool series webpage
+
+The list of titles displayed on the starting screen. 
+We can step into the detailed page of concerned movies with click on any title or 
+move to the whole database by clicking on "bd model" button at the right top corner. 
+The trailers can be watched from the detailed page of the films.
+After we stepped into the database, data is displayed in a table where 15 films
+are displayed on one page. The user can scroll through the data by clicking
+on the page numbers or arrows next to them.
+
+The user can change the order of the films in the table by clicking these headlines:
+title, year, runtime, genre. 
+<br>
+
 ## Story
 
 Codecool is famous about its great community and one of the reasons for this is
@@ -89,39 +141,3 @@ in the shell shows the following table (numbers can be higher):
     - The table on the page has the following column headers: (Empty for the number of the season), Title, Overview
     - The table on the page has rows and each row contains valid data according to the column headers
 
-## General requirements
-
-None
-
-## Hints
-
-- A dumb wireframe is provided in the `design.html` file (accessible on the
-  `/design` route) that will help you mix'n'match elements without lot of
-  styling work (use the provided `Jinja2` template inheritance as
-  well).
-- The relational model of the database can be accessed in the start repository
-  in the `data/db_schema/relational_model.png` file.
-- Table ordering by different columns are usually solved by `GET` requests
-  either using `query parameters` or with different routes and `variable rules`.
-  If you use the latter then it's more Search Engine Friendly.
-- For embedding the trailers use the provided `embed-youtube.js`.
-- Try to reuse code and Don't Repeat Yourself!
-- If you want to build dynamic `SQL` queries with parametrized `ORDER BY` clause
-  then you should check out the background material about SQL string composition.
-
-## Starting your project
-
-
-
-## Background materials
-
-- <i class="far fa-exclamation"></i> [SQL - working with data](project/curriculum/materials/pages/sql/sql-working-with-data.md)
-- <i class="far fa-book-open"></i> [PostgreSQL documentation](https://www.postgresql.org/docs/current/index.html)
-- <i class="far fa-exclamation"></i> [Passing data from browser](project/curriculum/materials/pages/web/passing-data-from-browser.md)
-- <i class="far fa-book-open"></i> [Flask documentation](https://flask.palletsprojects.com/en/1.1.x/)
-- <i class="far fa-book-open"></i> [Jinja documentation](https://jinja.palletsprojects.com/en/2.11.x/)
-- <i class="far fa-book-open"></i> [HTML documentation](https://developer.mozilla.org/en-US/docs/Web/HTML)
-- <i class="far fa-exclamation"></i> [About JavaScript](project/curriculum/materials/pages/javascript/javascript-about.md)
-- <i class="far fa-exclamation"></i> [Debugging with JavaScript](project/curriculum/materials/pages/javascript/javascript-debugging.md)
-- <i class="far fa-book-open"></i> [JavaScript documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide)
-- <i class="far fa-candy-cane"></i> [SQL string composition](https://www.psycopg.org/docs/sql.html)
