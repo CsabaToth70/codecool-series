@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title>CsED</title>
+    <title>Shows</title>
 
     <!-- Import Montserrat font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -28,6 +28,8 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
+    <link rel="icon" href="{{url_for('static', filename='assets/satelit.png')}}">
+    <script src="{{ url_for('static', filename='js/dom.js') }}"></script>
 </head>
 
 <body>
@@ -36,8 +38,8 @@
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">Codecool Series DB</span>
         <div id="header-auth">
+            <button type="button" id="db-model"><a href="http://127.0.0.1:5000/shows/most-rated">db-model</a></button>
             <button type="button" id="bt-register">Register</button>
-            <button type="button" id="bt-login">Login</button>
         </div>
     </header>
     <section>
@@ -56,7 +58,7 @@
             <ul>
                 {% for show in shows %}
                     <li>
-                        <a href="{{ '/tv-show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
+                        <a href="{{ '/show/?show-id=' + (show['id'] | string) }}">{{ show['title'] }}</a>
                     </li>
                 {% endfor %}
             </ul>
