@@ -7,6 +7,8 @@ My objective was to build up a dynamic website about movies and TV series. The t
 
 ## Applied technologies
 
+![](flask_psql_logos.png)
+
 Front end: HTML, CSS, Javascript, IFrame Player API
 Back end: server: Python, Flask server, postgres-based database
 
@@ -40,6 +42,8 @@ The runningorder of the SQL files should be as below:
 
 ## User information about main functionalities of the codecool series webpage
 
+![](moviePageCS.png)
+
 The list of titles displayed on the starting screen. 
 We can step into the detailed page of concerned movies with click on any title or 
 move to the whole database by clicking on "bd model" button at the right top corner. 
@@ -64,16 +68,6 @@ marketing team, there is also a database that is ready (thanks to
 [trakt.tv](https://trakt.tv/)), you "only" have to connect the dots and present
 the data in a digestable way.
 
-## What are you going to learn?
-
-You will learn and practice how to do the following things:
-- `PostgreSQL` queries with `SELECT`, `WHERE`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`,
-  `OFFSET` and aggregate functions;
-- `Flask` routes and variable rules;
-- `Jinja2` templating;
-- basic `HTML` tags;
-- a little bit of `JavaScript`;
-- and some basic algorhitmic and formatting topics.
 
 ## Tasks
 
