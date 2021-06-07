@@ -17,27 +17,29 @@ Back end: server: Python, Flask server, postgres-based database
 
 ## Technical information for building up database of the project 
 
-The runabble version can be found on the development brach of the repository.
+The runnable version can be found on the development branch of the repository.
 
 1. After cloning the project to the local machine, the next step is the creation of an SQL database within the local repository:
-sudo -u <user_name> createdb <name_of_database>
-and then stepping into the psql: psql
+sudo -u <user_name> createdb <name_of_database><br>
 
-2. Initiating connection to the created database: \connect <name_of_database>
+2. Initiating connection to the created database: <br>
+\connect <name_of_database>
 
-The runningorder of the SQL files should be as below:
-3. From data/db_schema/ folder 01_create_schema.sql -> psql -q <name_of_database> < 01_create_schema.sql
+    The running order of the SQL files should be as below:
+3. Move to "data/db_schema/" folder and enter command into the terminal:<br> 
+    psql -q <name_of_database> < 01_create_schema.sql
 
-4. From dump_1000_shows: 
-    Run all of them in the below order, with command: psql -q <name_of_database> < <name_of_sql_file>
+4. Further commands from "dump_1000_shows" folder: 
+    Run all of them in the below order, with command: <br>
+    psql -q <name_of_database> < <name_of_sql_file>
 
-    codecool_public_genres.sql
-    codecool_public_shows.sql 
-    codecool_public_actors.sql
-    codecool_public_show_genres.sql
-    codecool_public_seasons.sql
-    codecool_public_episodes.sql(95000 lines! It can take 15-20 minutes)
-    codecool_public_show_characters
+        codecool_public_genres.sql
+        codecool_public_shows.sql 
+        codecool_public_actors.sql
+        codecool_public_show_genres.sql
+        codecool_public_seasons.sql
+        codecool_public_episodes.sql(95000 lines! It can take 15-20 minutes)
+        codecool_public_show_characters
 <br>
 
 ## User information about main functionalities of the codecool series webpage
