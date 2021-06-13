@@ -29,14 +29,14 @@ section {
 a {
     text-decoration: none;
 
-    color: #278bc4;
+    color: #0d81a5;
 }
 
 a:active,
 a:hover {
     text-decoration: underline;
 
-    color: rgb(203, 75, 70);
+    color: #3f3ffc;
 }
 
 .breadcrumb,
@@ -75,4 +75,9 @@ a:hover {
 
 .clearfix:after {
     clear: both;
+}
+
+#highlighted_text {
+    font-weight: bold;
+    background-color: #d1f4fd;
 }

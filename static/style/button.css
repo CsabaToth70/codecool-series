@@ -4,11 +4,11 @@ input[type="button"] {
     font-family: "Montserrat", sans-serif;
 
     padding: 4px 12px;
-
+    font-weight: bold;
     color: #278bc4;
     border: #278bc4 solid 2px;
     border-radius: 2px;
-    background: rgba(0, 0, 0, 0);
+    background: #bef3ff;
 }
 
 button:hover,
@@ -18,9 +18,9 @@ input[type="submit"]:active,
 input[type="button"]:hover,
 input[type="button"]:active {
     cursor: pointer;
-
-    color: rgb(203, 75, 70);
-    border: rgb(203, 75, 70) solid 2px;
+    background-color: skyblue;
+    color: #3f3ffc;
+    border: #3f3ffc solid 2px;
 }
 
 .action-column button,
@@ -37,7 +37,7 @@ header input[type="submit"],
 header input[type="button"] {
     color: #fff;
     border: #fff solid 2px;
-    background: rgba(255, 255, 255, .1);
+    background: skyblue;
     text-shadow: 0 0 4px rgba(255, 255, 255, .2), 0 0 6px rgba(255, 255, 255, .1);
 }
 
@@ -50,10 +50,6 @@ header input[type="button"]:active {
     cursor: pointer;
 
     border: #fff solid 2px;
-    background: rgba(150, 150, 150, .25);
+    background: #21aeea;
     text-shadow: 0 0 4px rgba(255, 255, 255, .5), 0 0 6px rgba(255, 255, 255, .3);
-}
-
-#db-model a {
-    color: white;
 }

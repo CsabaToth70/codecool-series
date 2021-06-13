@@ -38,7 +38,7 @@
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">Codecool Series DB</span>
         <div id="header-auth">
-            <button type="button" id="db-model"><a href="http://127.0.0.1:5000/shows/most-rated">db-model</a></button>
+            <button type="button" id="bt-login">Login</button>
             <button type="button" id="bt-register">Register</button>
         </div>
     </header>
@@ -48,13 +48,28 @@
             <h2>Welcome TV show lovers!</h2>
             <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
             <p></p>
-            <p>Okay, actually this is a designed dumb page without any logic.</p>
-            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for
-                in-depth
-                navigation.
+            <div id="highlighted_text">
+                <br>
+                    Would you like to rank and browse freely in our movie database? If yes,
+                    <a href="http://127.0.0.1:5000/shows/most-rated">CLICK HERE</a>
+                <br><br>
+            </div>
+
+            <p></p>
+
+            <div>
+                <label for="searching">Searched for:</label>
+                <textarea name="input-text" id="searching" cols="50" rows="1"></textarea>
+                <button id="input-button">Search</button>
+            </div>
+
             </p>
         </div>
         <div class="card">
+
+            <ul id="findings">
+            </ul>
+
             <ul>
                 {% for show in shows %}
                     <li>
@@ -65,7 +80,8 @@
         </div>
     </section>
     <footer>
-        Copyright, bla-bla
+        ©2021 - Codecool
+
     </footer>
 </div>
 <div class="background">
