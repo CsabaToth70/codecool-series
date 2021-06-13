@@ -45,16 +45,7 @@
     <section>
         <h1 class="title text-center">Welcome page</h1>
         <div class="card">
-            <h2>Welcome TV show lovers!</h2>
-            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
-            <p></p>
-            <div id="highlighted_text">
-                <br>
-                    Would you like to rank and browse freely in our movie database? If yes,
-                    <a href="http://127.0.0.1:5000/shows/most-rated">CLICK HERE</a>
-                <br><br>
-            </div>
-            <br>
+
             <br>
             <div id="input-request-text">
                 <label for="searching">Search by words of MOVIE TITLES or by ACTOR'S NAME elements:</label>
@@ -67,12 +58,7 @@
             </p>
         </div>
         <div class="card">
-            <ul>
-                {% for show in shows %}
-                    <li>
-                        <a href="{{ '/show/?show-id=' + (show['id'] | string) }}">{{ show['title'] }}</a>
-                    </li>
-                {% endfor %}
+            <ul id="findings">
             </ul>
         </div>
     </section>
