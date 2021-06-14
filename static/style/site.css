@@ -82,21 +82,22 @@ a:hover {
     background-color: #d1f4fd;
 }
 
-#input-request-text{
+#input-request-text {
     font-weight: bold;
 }
 
 textarea {
-  width: 450px;
-  height: 24px;
-  font-size: 20px;
+    width: 450px;
+    height: 24px;
+    font-size: 20px;
 }
 
-form {
-  display: flex;
-  flex-direction: row;
+span {
+    display: flex;
+    flex-direction: row;
 }
 
 nav {
     font-size: 24px;
 }
+

@@ -47,9 +47,15 @@ sudo -u <user_name> createdb <name_of_database><br>
 ![](moviePageCS.png)
 
 The list of titles displayed on the starting screen. 
-We can step into the detailed page of concerned movies with click on any title or 
-move to the whole database by clicking on "bd model" button at the right top corner. 
+We can step into the detailed page of concerned movies with click on any title.
 The trailers can be watched from the detailed page of the films.
+
+Do you want to find a film by name of an actor or some words from its title?
+Just click on "Search by words of MOVIE TITLES or by ACTOR'S NAME elements: 🔎"
+line and explore it!
+
+Would you like to rank and browse freely in our movie database? If yes, 
+jump to the whole database by clicking on its linked text! 
 After we stepped into the database, data is displayed in a table where 15 films
 are displayed on one page. The user can scroll through the data by clicking
 on the page numbers or arrows next to them.

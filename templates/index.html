@@ -28,8 +28,8 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
-    <link rel="icon" href="{{url_for('static', filename='assets/satelit.png')}}">
-    <script src="{{ url_for('static', filename='js/dom.js') }}"></script>
+    <link rel="icon" href="{{ url_for('static', filename='assets/satelit.png') }}">
+
 </head>
 
 <body>
@@ -50,23 +50,22 @@
             <p></p>
             <div id="highlighted_text">
                 <br>
-                    Would you like to rank and browse freely in our movie database? If yes,
-                    <a href="http://127.0.0.1:5000/shows/most-rated">CLICK HERE</a>
+                Would you like to rank and browse freely in our movie database? If yes,
+                <a href="http://127.0.0.1:5000/shows/most-rated">CLICK HERE</a>
                 <br><br>
             </div>
             <br>
             <br>
             <div id="input-request-text">
-                <label for="searching">Search by words of MOVIE TITLES or by ACTOR'S NAME elements:</label>
-                <form>
-                    <nav id="icon">🔎</nav>
-                        <textarea name="input-text" id="searching" cols="50" rows="1"></textarea>
-                        <button id="input-button">Search</button>
-                </form>
+                <a href="http://127.0.0.1:5000/search">Search by words of MOVIE TITLES or by ACTOR'S NAME elements:
+                    🔎</a>
             </div>
             </p>
         </div>
         <div class="card">
+            <ul id="findings">
+            </ul>
+
             <ul>
                 {% for show in shows %}
                     <li>

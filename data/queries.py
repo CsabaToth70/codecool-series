@@ -99,3 +99,19 @@ FROM seasons
 WHERE show_id = %(s_d)s AND season_number != 0
 ORDER BY season_number;'''
     return data_manager.execute_select(query, variables={'s_d': show_id})
+
+
+def get_result(searching_text):
+    query = '''
+    SELECT a.name,
+       sc.character_name,
+       s.title
+    FROM shows s
+    INNER JOIN show_characters sc
+        ON s.id=sc.show_id
+    INNER JOIN actors a
+        ON sc.actor_id = a.id
+    WHERE a.name ILIKE %(t_t)s OR
+          sc.character_name ILIKE %(t_t)s OR
+          s.title ILIKE %(t_t)s;'''
+    return data_manager.execute_select(query, {'t_t': searching_text})

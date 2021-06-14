@@ -28,8 +28,9 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
-    <link rel="icon" href="{{url_for('static', filename='assets/satelit.png')}}">
-    <script src="{{ url_for('static', filename='js/dom.js') }}"></script>
+    <link rel="icon" href="{{ url_for('static', filename='assets/satelit.png') }}">
+    <script src="{{ url_for('static', filename='js/search.js') }}" defer></script>
+
 </head>
 
 <body>
@@ -37,10 +38,7 @@
     <header class="clearfix">
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">Codecool Series DB</span>
-        <div id="header-auth">
-            <button type="button" id="bt-login">Login</button>
-            <button type="button" id="bt-register">Register</button>
-        </div>
+
     </header>
     <section>
         <h1 class="title text-center">Welcome page</h1>
@@ -49,12 +47,14 @@
             <br>
             <div id="input-request-text">
                 <label for="searching">Search by words of MOVIE TITLES or by ACTOR'S NAME elements:</label>
-                <form>
-                    <nav id="icon">🔎</nav>
+                <span>
+
                         <textarea name="input-text" id="searching" cols="50" rows="1"></textarea>
-                        <button id="input-button">Search</button>
-                </form>
+                        <button id="input-button">🔎</button>
+                </span>
             </div>
+            <a id="back-button" href="/"><-Back to start</a>
+            <a id="db-button" href="http://127.0.0.1:5000/shows/most-rated">Go to movie database model-></a>
             </p>
         </div>
         <div class="card">

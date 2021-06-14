@@ -40,22 +40,10 @@
         <span id="header-title" class="title">
                     Codecool Series DB
                 </span>
-        <div id="header-auth">
-            <button type="button" id="bt-register">Register</button>
-            <button type="button" id="bt-login">Login</button>
-        </div>
+
     </header>
     <section>
         {% if is_one_show %}
-            {#            <nav class="breadcrumb">#}
-            {#                <a href="#">Game of Thrones</a>#}
-            {#                <span class="separator">&gt;</span>#}
-            {#                <a href="#">Season 3</a>#}
-            {#                <span class="separator">&gt;</span>#}
-            {#                <a href="#">Episode 8</a>#}
-            {#                <span class="separator">&gt;</span>#}
-            {#                <a href="https://www.google.com/search?q=lord+of+rings&source=lnms&tbm=isch&sa=X&biw=1366&bih=639">Link to searching</a>#}
-            {#            </nav>#}
             {% if detailDict['Trailer'] is not none %}
                 <iframe width="450" height="270"
                         src="https://www.youtube.com/embed/{{ detailDict['Trailer'].split('=')[1] }}"></iframe>
@@ -66,14 +54,7 @@
 
             <div class="card">
                 <h2>Welcome TV show lovers!</h2>
-
-                {#            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>#}
-                {#            <p></p>#}
-                {#            <p>Okay, actually this is a designed dumb page without any logic.</p>#}
-                {#            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for#}
-                {#                in-depth#}
-                {#                navigation.#}
-                {#            </p>#}
+                <a id="back-button" href="/"><-Back to start</a>
             </div>
         {% endif %}
         {#    All shows in shorted pages starts here#}
@@ -163,10 +144,10 @@
         {% if detailed_view %}
             {#    Detailed view of one selected show starts here #}
             <div class="card detailed-view">
-{#                <p>And here is a "detailed" kind of view:</p>#}
+                {#                <p>And here is a "detailed" kind of view:</p>#}
                 <div class="row">
-{#                    <img src="http://www.impawards.com/{{ detailDict["Year"] }}posters/{{ detailDict["Title"] }}.jpg" alt="poster"#}
-{#                         class="poster col col-third">#}
+                    {#                    <img src="http://www.impawards.com/{{ detailDict["Year"] }}posters/{{ detailDict["Title"] }}.jpg" alt="poster"#}
+                    {#                         class="poster col col-third">#}
                     <div class="col col-twothird">
                         <h1>{{ detailDict['Title'] }}</h1>
                         <p class="small grayed">{{ detailDict['Runtime'] }} <span
@@ -175,37 +156,28 @@
                                     class="separator">|</span> {{ detailDict['Year'] }}</p>
                         <p><a href={{ detailDict['Homepage'] }}>Homepage: {{ detailDict['Homepage'] }}</a></p>
                         <p>Rating: {{ detailDict['Rating'] }}</p>
-                        {#                            <p>A fast-talking mercenary with a morbid sense of humor is subjected to a rogue experiment#}
-                        {#                                that#}
-                        {#                                leaves#}
-                        {#                                him with accelerated healing powers and a quest for revenge.</p>#}
                     </div>
                 </div>
                 <div>
                     <p><b>Stars:</b>&nbsp;{{ detailDict['Actors'] }}</p>
-                    {#                        <p><b>Director:</b>&nbsp;<a href="#">Tim Miller</a></p>#}
-                    {#                        <p><b>Writers:</b>&nbsp;<a href="#">Rhett Reese</a>, <a href="#">Paul Wernick</a></p>#}
-                    {#                        <p><b>Stars:</b>&nbsp;<a href="#">Ryan Reynolds</a>, <a href="#">Morena Baccarin</a>, <a#}
-                    {#                                href="#">T.J.#}
-                    {#                            Miller</a></p>#}
                 </div>
             </div>
-            <div class="card" >
-            <table>
-                <h2>Seasons</h2>
-                <tr>
-                    <th id="season_number"></th>
-                    <th id="season_title"> {{ season_headers[1] }} </th>
-                    <th> {{ season_headers[2] }} </th>
-                </tr>
-                {% for row in season_data %}
+            <div class="card">
+                <table>
+                    <h2>Seasons</h2>
                     <tr>
-                        {% for element in season_headers %}
-                            <td>{{ row[element] }}</td>
-                        {% endfor %}
+                        <th id="season_number"></th>
+                        <th id="season_title"> {{ season_headers[1] }} </th>
+                        <th> {{ season_headers[2] }} </th>
                     </tr>
-                {% endfor %}
-            </table>
+                    {% for row in season_data %}
+                        <tr>
+                            {% for element in season_headers %}
+                                <td>{{ row[element] }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
             </div>
             {#    Detailed view of one selected show starts here #}
         {% endif %}

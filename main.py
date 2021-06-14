@@ -1,7 +1,7 @@
-from flask import Flask, render_template, url_for, request, redirect
-from data import queries
-import math
 from dotenv import load_dotenv
+from flask import Flask, render_template, request, jsonify
+
+from data import queries
 
 load_dotenv()
 app = Flask('codecool_series')
@@ -90,6 +90,23 @@ def get_detailed_show():
     season_data = queries.get_season_data(show_id)
     return render_template('design.html', is_one_show=True, detailed_view=True, detailDict=detail_dict,
                            season_headers=season_headers, season_data=season_data)
+
+
+@app.route('/search')
+def get_searching_page():
+    return render_template('search.html')
+
+
+@app.route('/search-input', methods=['GET'])
+def get_searching_result():
+    searching_text = request.args.get('input-text')
+    word_list = searching_text.split(' ')
+    result_list = []
+    for word in word_list:
+        findings = queries.get_result('%' + word + '%')
+        for i, row in enumerate(findings):
+            result_list.append(findings[i])
+    return jsonify(result_list)
 
 
 def get_starting_row_number(page_number):
